@@ -11,8 +11,6 @@ var _preact = require('preact');
 
 var _preactRouter = require('preact-router');
 
-var _util = require('./util');
-
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -38,7 +36,7 @@ var Match = exports.Match = function (_Component) {
 
 		_this.baseUrl = _this.props.base || '';
 		if (props.path) {
-			var segments = (0, _util.segmentize)(props.path);
+			var segments = (0, _preactRouter.segmentize)(props.path);
 			segments.forEach(function (segment) {
 				if (segment.indexOf(':') == -1) {
 					_this.baseUrl = _this.baseUrl + '/' + segment;
@@ -71,7 +69,7 @@ var Match = exports.Match = function (_Component) {
 		var newProps = {
 			url: url,
 			path: path,
-			matches: path === props.path || (0, _util.exec)(path, context['preact-router-base'] + props.path, {})
+			matches: path === props.path || (0, _preactRouter.exec)(path, context['preact-router-base'] + props.path, {})
 		};
 
 		return props.children[0] && (typeof props.children[0] === 'function' ? props.children[0](newProps) : (0, _preact.cloneElement)(props.children[0], newProps));
